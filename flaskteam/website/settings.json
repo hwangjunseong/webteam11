@@ -1,4 +1,0 @@
-{
-  "python.analysis.extraPaths": ["/c/Users/user/Desktop/flaskteam/myvenv/"],
-  "python.analysis.disabled": ["reportMissingImports"]
-}
