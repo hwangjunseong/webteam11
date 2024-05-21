@@ -1,0 +1,41 @@
+{% extends "base.html" %} 
+{% block content %} 
+{% for message in get_flashed_messages() %}
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+  {{ message }}
+</div>
+{% endfor %}
+<h1>Crawl Blog Posts</h1>
+<div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+    <form method="POST">
+      {{ form.hidden_tag() }} 
+      {{ form.title.label(for="categoryTitle", class="form-label") }}
+      {{ form.title(class="form-control", id="categoryTitle") }}
+      <br />
+      {{ form.submit(class="btn btn-primary") }}
+    </form>
+</div>
+<div class="text-end">
+    <a href="{{ url_for('delete_categories', id=current_user.id) }}" class="btn btn-outline-danger btn-sm">Delete All Category</a>
+</div>
+<br />
+
+<table class="table table-bordered border-primary">
+    {% for category in categories %}
+        {% if current_user.id == category.categorier.id %}
+            <tr> 
+                <td>
+                    <small>By: {{ category.categorier.name }}
+                    -Title : <a href="" class="categoryTitleLink" data-title="{{ category.title }}">{{ category.title }}</a>
+                    -Category : {{ category.category }}
+                  
+                    <a href="{{ url_for('delete_category', id = category.id) }}" class="btn btn-outline-danger btn-sm">Delete Category</a>
+                </td>
+            </tr>  
+        {% endif %}
+    {% endfor %}
+</table>
+
+
+    
+    {%endblock%}
