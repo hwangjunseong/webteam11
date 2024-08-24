@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+
+        
+
+        {% if current_user.is_authenticated %}
+          
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('crawling')}}">Crawling</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('add_crawlpost')}}">Add Crawl Blog Post</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('add_user')}}">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('login')}}">Login</a>
+        </li>
+        {% endif %}
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('posts')}}">Posts</a>
+        </li>
+      </ul>
+      <form method="POST" action="{{url_for("search")}}" class="d-flex" role="search">
+        {{form.hidden_tag()}}
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search", name="searched"
+        />
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

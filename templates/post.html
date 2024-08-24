@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block content %} {% for message in
+    get_flashed_messages()%}
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      {{message}}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    
+{% endfor%}
+<h1>Blog Posts</h1></br>
+ 
+<div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+
+  <div class="col-12">
+    {% if post.post_pic %}
+      <img src="{{url_for('static', filename='images/'+post.post_pic)}}" width="200" align = "right">
+    {% else %}
+      <img src="{{url_for('static', filename='images/default.png')}}" width="200" align = "right">
+    {% endif %}
+  </div>
+  <small>By: {{post.poster.name}}<br/>
+    {{post.category}}</small><br/>
+    <h2>{{post.title}}</h2><br/>
+    {{post.date_posted}}</small><br/>
+    <a target="_blank" rel="noopener noreferrer" href={{post.url}}>{{post.url}}</a></small><br/>
+    {{post.content}}<br/>
+    {% if post.poster_id == current_user.id%}
+
+  <a href="{{url_for('edit_post', id = post.id)}}" class = "btn btn-outline-info btn-sm">Edit Post</a>
+  <a href="{{url_for('delete_post', id = post.id)}}" class = "btn btn-outline-danger btn-sm">Delete Post</a>
+  {% endif %}
+  <a href="{{url_for('posts')}}" class = "btn btn-outline-success btn-sm">Back To Blog</a>
+    </div>
+    
+
+{%endblock%}
+    

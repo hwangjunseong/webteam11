@@ -1,0 +1,57 @@
+{% extends "base.html" %} 
+{% block content %} 
+{% for message in get_flashed_messages() %}
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+  {{ message }}
+</div>
+{% endfor %}
+<h1>Crawl Blog Posts</h1>
+<div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+    <form method="POST">
+      {{ form.hidden_tag() }} 
+      {{ form.title.label(for="categoryTitle", class="form-label") }}
+      {{ form.title(class="form-control", id="categoryTitle") }}
+      <br />
+      {{ form.submit(class="btn btn-primary") }}
+    </form>
+</div>
+<div class="text-end">
+    <a href="{{ url_for('delete_categories', id=current_user.id) }}" class="btn btn-outline-danger btn-sm">Delete All Category</a>
+</div>
+<br />
+
+
+
+   
+    
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="Stock" checked>
+        <label class="btn btn-outline-primary" for="btnradio1">Stock</label>
+      
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="Music">
+        <label class="btn btn-outline-primary" for="btnradio2">Music</label>
+      
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="Sport">
+        <label class="btn btn-outline-primary" for="btnradio3">Sport</label>
+    </div>
+    <table class="table table-bordered border-primary mt-3">
+        <tbody id="categoryTableBody">
+            {% for category in categories %}
+                {% if current_user.id == category.categorier.id %}
+                    <tr class="category-row" data-category="{{ category.category }}"> 
+                        <td>
+                            <small>By: {{ category.categorier.name }}
+                                -Title : <a href="" class="categoryTitleLink" data-title="{{ category.title }}">{{ category.title }}</a>
+                                -Category : {{ category.category }}
+                              
+                            <a href="{{ url_for('delete_category', id = category.id) }}" class="btn btn-outline-danger btn-sm">Delete Category</a>
+                        </td>
+                    </tr>  
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    
+    {% endblock %}
+    

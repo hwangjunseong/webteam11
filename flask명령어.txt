@@ -1,0 +1,146 @@
+flask
+Flask-SQLAlchemy
+flask-login
+
+
+export FLASK_ENV=development
+export FLASK_APP=app.py
+flask run
+
+export FLASK_APP=앱객체정의된위치
+export FLASK_APP=app.py
+flask run
+deactivate
+
+mkdir .ssh
+cd .ssh
+ssh-keygen.exe
+$ ssh-keygen.exe
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/c/Users/user/.ssh/id_ed25519):
+/c/Users/user/.ssh/id_ed25519 already exists.
+Overwrite (y/n)? y
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/user/.ssh/id_ed25519
+Your public key has been saved in /c/Users/user/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:VWcKOQZZeVriA55hUQeP9VCVtqVOo4y6fUP1HDnuiaw user@lgpc
+The key's randomart image is:
++--[ED25519 256]--+
+|        o*=+=.+.o|
+|        = *Bo* o.|
+|       o *o*o o.+|
+|        o.+   == |
+|        S  + =.+o|
+|          . + ..o|
+|         . .. o .|
+|        ..  oo o |
+|        ...E..   |
++----[SHA256]-----+
+cd ~/.ssh
+
+$ ls ~/.ssh
+id_ed25519  id_ed25519.pub
+cat id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAVmGrS5kS8opy/Arj49y9WWQeNKDyJ0GFMix/4bjQdH user@lgpc
+github에서 ssh and gpg keys에 추가한다
+
+github에 push
+ touch .gitignore
+gitignore에서
+.gitignore
+가상환경이름/
+
+가상환경실행하고 하는거
+git이름
+git config --global user.name "Your Name"
+git config --global user.email "you@youraddress.com"
+git config --global push.default matching
+git config --global alias.co checkout
+git init
+
+git켜기
+git add .
+저장
+git commit -am 'initial commit'
+
+reperserity하나만들고
+git remote add origin https://github.com/hwangjunseong/flasker.git
+git branch -M main
+git push -u origin main
+
+변경사항 저장하기
+git add .
+git commit -am 'tweaked 500.html'
+git push
+
+pip install flask-wtf
+
+
+href="{{url_for('user', name='jun')}}
+url_for에 html이름 전달
+
+jinja에서 {% if  %} 열때마다 {% endif %}
+해야함
+csrf토근생성하는함수 ->        {{form.hidden_tag()}}
+내가 생성한 form객체에서 name이랑 거에대한 label    {{form.name.label}}
+stringfield는 input받는거다    name = StringField("what is your name", validators=[DataRequired()])
+name.html에서 {{form.name()}}이게 입력받음
+
+name.html에서 form.name과 form.submit에 bootstrap에서 가져온 form class 찾아서 인자로 넣음
+validators 종류와 field종류 여러가지 -> flask what the form 문서
+
+flash함수 {% for message in get_flashed_messages()%}
+    {{message}}
+{% endfor%}
+
+python 대화형 shell
+winpty python
+from __init__ import db, app
+app.app_context().push()
+db.create_all()
+exit()
+데이베이스 생성
+migrate과정
+pip install Flask-Migrate
+flask db init
+flask db migrate -m "Initial migration"
+flask db upgrade 변경 사항을 데이터베이스에 적용
+
+mysql 데이터베이스 사용
+pip install mysql-connector
+pip install mysql-connector-python==8.0.17
+pip install mysql-connector-python-rf ->이거 x
+python create_db.py
+
+pip install pymysql
+pip install cryptography
+conda install -c conda-forge mysql-connector-python -> anaconda에서 mysql.connector설치
+conda install pymysql
+
+flask db init후-> migrate 생성
+$ flask db migrate -m 'initial Migration'  스키마 변경하라고 메세지보내는거
+flask db upgrade(push)
+flask db migrate -m "a
+
+Werkzeug==3.0.2 -> 비밀번호 해쉬하는데 사용
+> from __init__ import Users
+>>> u = Users()
+>>> u.password
+>>> u.password = 'cat'
+u.password_hash
+>>> u.verify_password('cat')
+False
+
+
+flask db migrate -m 'Add Posts Model'
+flask db upgrade
+
+
+pip install flask_login
+id가 세션에 저장된다
+
+
+netstat -ano | findstr :3000
+winpty taskkill /PID 32296 /F
